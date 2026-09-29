@@ -2,19 +2,17 @@ import { createBuilder } from './.aspire/modules/aspire.mjs';
 
 const builder = await createBuilder();
 
-// Run the Express API and expose its HTTP endpoint externally.
-const app = await builder
-    .addNodeApp("app", "./api", "src/index.ts")
+const searchService = await builder
+    .addJavaScriptApp("SearchService", "./DSaster-SearchService/src/dsaster-search")
+    .withUrl("/swagger")
+    .withPnpm()
     .withHttpEndpoint({ env: "PORT" })
     .withExternalHttpEndpoints();
 
-// Run the Vite frontend after the API and inject the API URL for local proxying.
-const frontend = await builder
-    .addViteApp("frontend", "./frontend")
-    .withReference(app)
-    .waitFor(app);
-
-// Bundle the frontend build output into the API container for publish/deploy.
-await app.publishWithContainerFiles(frontend, "./static");
+await builder
+    .addViteApp("Frontend", "./DSaster-Front/src/dsaster-front")
+    .withPnpm()
+    .withReference(searchService)
+    .waitFor(searchService);
 
 await builder.build().run();

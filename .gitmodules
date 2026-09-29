@@ -1,0 +1,6 @@
+[submodule "src/dsaster-host/DSaster-SearchService"]
+	path = src/dsaster-host/DSaster-SearchService
+	url = https://github.com/DSaster-Error200-LLC/DSaster-SearchService.git
+[submodule "src/dsaster-host/DSaster-Front"]
+	path = src/dsaster-host/DSaster-Front
+	url = https://github.com/DSaster-Error200-LLC/DSaster-Front.git
