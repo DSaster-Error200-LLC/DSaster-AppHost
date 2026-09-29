@@ -24,6 +24,7 @@
     }
   },
   "packages": {
-    "Aspire.Hosting.JavaScript": "13.5.4"
+    "Aspire.Hosting.JavaScript": "13.5.4",
+    "Aspire.Hosting.Elasticsearch": "13.3.0"
   }
 }
