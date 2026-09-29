@@ -1,0 +1,13 @@
+{
+  "editor.rulers": [80, 120],
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    ".vs/": true,
+    "dist/": true,
+    "node_modules/": true,
+    ".aspire/": true,
+    ".modules/": true,
+  },
+  "sonarlint.disableTelemetry": true
+}
