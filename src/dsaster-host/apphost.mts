@@ -16,10 +16,16 @@ const searchService = await builder
     .withEnvironment("ELASTICSEARCH_URL", elasticsearch.getEndpoint("http"))
     .waitFor(elasticsearch);
 
+const bookingService = await builder
+    .addProject("BookingService", "./sales-module/BookingService.Api")
+    .withUrl("/swagger");
+
 await builder
     .addViteApp("Frontend", "./DSaster-Front/src/dsaster-front")
     .withPnpm()
     .withReference(searchService)
-    .waitFor(searchService);
+    .waitFor(searchService)
+    .withReference(bookingService)
+    .waitFor(bookingService);
 
 await builder.build().run();

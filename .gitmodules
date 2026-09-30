@@ -4,3 +4,6 @@
 [submodule "src/dsaster-host/DSaster-Front"]
 	path = src/dsaster-host/DSaster-Front
 	url = https://github.com/DSaster-Error200-LLC/DSaster-Front.git
+[submodule "src/dsaster-host/sales-module"]
+	path = src/dsaster-host/sales-module
+	url = https://github.com/zackspike/sales-module.git
