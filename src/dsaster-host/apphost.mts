@@ -5,7 +5,11 @@ const builder = await createBuilder();
 const elasticsearch = await builder
     .addContainer("Elasticsearch", "docker.io/library/elasticsearch")
     .withImageTag("9.5.3")
-    .withHttpEndpoint({ targetPort: 9200, name: "http" });
+    .withEnvironment("discovery.type", "single-node")
+    .withEnvironment("xpack.security.enabled", "false")
+    .withEnvironment("ES_JAVA_OPTS", "-Xms512m -Xmx512m")
+    .withHttpEndpoint({ targetPort: 9200, name: "http" })
+    .withHttpHealthCheck({ path: "/", statusCode: 200, endpointName: "http" });
 
 const searchService = await builder
     .addJavaScriptApp("SearchService", "./DSaster-SearchService/src/dsaster-search")
