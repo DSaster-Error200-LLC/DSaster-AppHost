@@ -27,9 +27,9 @@ const bookingService = await builder
 await builder
     .addViteApp("Frontend", "./DSaster-Front/src/dsaster-front")
     .withPnpm()
-    .withReference(searchService)
+    .withEnvironment("SEARCH_API_URL", searchService.getEndpoint("http"))
     .waitFor(searchService)
-    .withReference(bookingService)
+    .withEnvironment("BOOKING_API_URL", bookingService.getEndpoint("http"))
     .waitFor(bookingService);
 
 await builder.build().run();
